@@ -3,10 +3,10 @@ Blockchain project for ASU/ SUI-Hackathon
 End-to-End dApp for artists
 
 # Dependencies:
-NodeJS
-Sui Client
-NFT.Storage - API
-Supabase - DB as Service
+NodeJS  
+Sui Client  
+NFT.Storage - API  
+Supabase - DB as Service  
 
 ## How to Run
 ```
