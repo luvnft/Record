@@ -5,6 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .navbar p {
@@ -26,6 +27,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 20px;
+    font-weight: bold;
 }
   
 .navbar a:hover {
