@@ -10,7 +10,7 @@ function NavBar() {
       <p> Mixtape</p>
       <Link to="/">Home</Link>
       <Link to="/market">Market</Link>
-      <Link to="/mytracks">My Musik</Link>
+      <Link to="/mytracks">My Mixtapes</Link>
       <ConnectButton />
     </div>
   );

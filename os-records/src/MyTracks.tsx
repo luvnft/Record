@@ -11,7 +11,7 @@ const package_id = '0x8d6acf918d2a3eeda02c44f086fe96d8878c5f627a7b2c19b3f4ac3ccb
 function MyTracks() {
     return (
         <div>
-            <h1>MyTracks</h1>
+            <h1>My Mixtapes</h1>
             <ConnectedAccount />
         </div>
 
@@ -77,12 +77,12 @@ function OwnedObjects({ address }: { address: string }) {
 
     if (!tracks) {
         console.log('No data');
-        return <div>No Tracks Owned -- Make Some Music!</div>;
+        return <div>No Mixtapes Owned -- Make Some Music!</div>;
     }
 
     return (
         <div>
-            <h3>Owned Tracks</h3>
+            <h3>Owned Mixtapes</h3>
 
             {tracks.map((track, index) => (
                 <div key={index} style={{ display: 'flex', alignItems: 'center', padding: '3px', border: '1px solid black', margin: '5px' }}>
@@ -90,7 +90,7 @@ function OwnedObjects({ address }: { address: string }) {
                     <p style={{ marginRight: '30px', marginLeft: '30px' }}>Creator: {track?.creator}</p>
                     <p style={{ marginRight: '30px', marginLeft: '30px' }}>Genre: {track?.genre}</p>
                     {!track?.forSale ? (
-                        <button style={{ marginRight: '30px', marginLeft: '30px' }} onClick={() => handleSellTrack(track?.objectId ?? '')}>Sell Track</button>
+                        <button style={{ marginRight: '30px', marginLeft: '30px' }} onClick={() => handleSellTrack(track?.objectId ?? '')}>Sell Mixtape</button>
                     ) : (
                         <p style={{ marginRight: '30px', marginLeft: '30px' }}>N/A</p>
                     )}
@@ -267,7 +267,7 @@ function CreateTrack() {
 
     return (
         <div>
-            <h3> Create New Track NFT </h3>
+            <h3> Create New Mixtape </h3>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:
@@ -285,7 +285,7 @@ function CreateTrack() {
                     Track File:
                     <input type="file" name="trackFile" onChange={handleFileChange} required />
                 </label>
-                <button type="submit" color='green'>Create Track</button>
+                <button type="submit" color='green'>Create Mixtape</button>
             </form>
         </div>
     );
