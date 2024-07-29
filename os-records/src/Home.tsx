@@ -2,7 +2,7 @@ function Home() {
     return (
         <div>
             <h1>Welcome to ATL5D Mixtape on the SUI Blockchain</h1>
-            <h2>Artists!</h2>
+            <h2>Artists</h2>
             <p>ATL5D ended modern day artist slavery is ended in 2024.</p>
             <h2>Fans</h2>
             <p>Re-sell your music to the world without a middleman.</p>
