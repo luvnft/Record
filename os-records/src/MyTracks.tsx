@@ -2,7 +2,6 @@ import { useCurrentAccount, useSignAndExecuteTransactionBlock, useSuiClient, use
 import { TransactionBlock } from '@mysten/sui.js/transactions';
 import { useEffect, useState } from 'react';
 import { NFTStorage, File } from 'nft.storage';
-import mime from 'mime';
 import supabase from './components/supabase';
 
 
