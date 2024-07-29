@@ -1,11 +1,10 @@
-
 import { useCurrentAccount } from "@mysten/dapp-kit";
 import supabase from './components/supabase';
 import { useEffect, useState } from "react";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
+import { useSuiClient, useSignAndExecuteTransactionBlock } from '@mysten/dapp-kit'; // Ensure these hooks are imported correctly
 
 const package_id = '0x8d6acf918d2a3eeda02c44f086fe96d8878c5f627a7b2c19b3f4ac3ccb36ee16';
-
 
 function Market() {
     return (
@@ -13,14 +12,14 @@ function Market() {
             <h1>Market</h1>
             <ListObjects />
         </div>
-    )
+    );
 }
 
 function ListObjects() {
     const account = useCurrentAccount();
     const [tracks, setTracks] = useState<any[] | null>([]);
     const suiClient = useSuiClient();
-    const { mutate: signAndExcute } = useSignAndExecuteTransactionBlock();
+    const { mutate: signAndExecute } = useSignAndExecuteTransactionBlock();
 
     useEffect(() => {
         fetchTracks();
@@ -34,7 +33,42 @@ function ListObjects() {
 
         if (error) console.log('Error: ', error);
         else setTracks(tracks);
-        console.log(tracks)
+        console.log(tracks);
+    }
+
+    function handleBuy(objectId: string, marketId: string, price: string) {
+        if (!account) {
+            return alert('Please connect your wallet to purchase the track');
+        }
+
+        const txb = new TransactionBlock();
+        console.log('Buying: ', objectId);
+        console.log('Market ID: ', marketId);
+        txb.moveCall({
+            arguments: [txb.object(marketId), txb.object(objectId), txb.pure(price)],
+            target: `${package_id}::marketplace::buy_and_take`,
+            typeArguments: [`${package_id}::track::Track`, `0x2::sui::SUI`],
+        });
+
+        signAndExecute(
+            {
+                transactionBlock: txb,
+                options: {
+                    showEffects: true,
+                },
+            },
+            {
+                onSuccess: async (tx) => {
+                    await suiClient.waitForTransactionBlock({
+                        digest: tx.digest,
+                    });
+
+                    console.log("Bought Music");
+                    const objId = tx.effects?.created?.[0]?.reference?.objectId ?? '';
+                    await supabase.from('TracksDB').update({ forSale: false }).eq('objectId', objId);
+                },
+            }
+        );
     }
 
     return (
@@ -48,45 +82,7 @@ function ListObjects() {
                 </div>
             ))}
         </div>
-    )
-    
-    function handleBuy(objectId: string, marketId: string, price: string) {
-
-        if (!account) {
-            return (alert('Please connect your wallet to purchase the track'));
-        }
-    
-        const txb = new TransactionBlock();
-        console.log('Buying: ', objectId);
-        console.log('Market ID: ', marketId);
-        txb.moveCall({
-            arguments: [txb.object(marketId), txb.object(objectId), txb.pure(price)],
-            target: `${package_id}::marketplace::buy_and_take`,
-            typeArguments: [`${package_id}::track::Track`, `0x2::sui::SUI`]
-        });
-        
-        signAndExcute(
-            {
-                transactionBlock: txb,
-                options: {
-                    showEffects: true,
-                },
-            },
-            {
-                onSuccess: async (tx) => {
-                    await suiClient.waitForTransactionBlock({
-                        digest: tx.digest,
-                    });
-
-                    console.log("Bought Music")
-                    const objId = tx.effects?.created?.[0]?.reference?.objectId ?? '';
-                    await supabase.from('TracksDB').update({ forSale: false}).eq('objectId', objId);
-                }
-            }
-        );
-        
-    }
-
+    );
 }
 
 export default Market;
