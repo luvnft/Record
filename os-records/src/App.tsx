@@ -12,7 +12,6 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/market" element={<Market />} />
           <Route path="/mytracks" element={<MyTracks />} />
       </Routes>
