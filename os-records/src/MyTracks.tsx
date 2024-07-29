@@ -5,7 +5,7 @@ import { NFTStorage, File } from 'nft.storage';
 import supabase from './components/supabase';
 
 
-const NFT_STORAGE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDJmRjMwNDE5NjgxODNCODA5NDllOThGMTI0MkVEZDI3OUFCZDc0MGEiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcxMTgzMjQxNDc3OCwibmFtZSI6InN1aSJ9.l5sr6fsCQUuQcesBuZKTpPkLKzpobUsfNNHt7ywsp0c';
+const NFT_STORAGE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDRlOUJBY0ExODg3RTkyZEQyRDMyN0YyYTg1QTIzQTJDNzNEZDIxMWUiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwMzk2NTY4NTUyNywibmFtZSI6IlNvbGFuYSJ9.yNnJtQnl8lWs_18p1ezG0hsYSnhnHpx-lyD9tPYM05s';
 const package_id = '0x8d6acf918d2a3eeda02c44f086fe96d8878c5f627a7b2c19b3f4ac3ccb36ee16';
 
 function MyTracks() {
