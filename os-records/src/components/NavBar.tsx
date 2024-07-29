@@ -7,10 +7,10 @@ function NavBar() {
 
   return (
     <div className="navbar">
-      <p> Mixtape</p>
-      <Link to="/">Home</Link>
-      <Link to="/market">Market</Link>
-      <Link to="/mytracks">My Mixtapes</Link>
+      <p> MIXTAPE</p>
+      <Link to="/">HOME</Link>
+      <Link to="/market">MARKET</Link>
+      <Link to="/mytracks">MY MIXTAPES</Link>
       <ConnectButton />
     </div>
   );
